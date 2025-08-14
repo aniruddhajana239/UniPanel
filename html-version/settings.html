@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - University WCMS</title>
+    <meta name="description" content="Configure system settings, branding, and preferences for the university website">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82Z"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">University WCMS</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="content.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                            Content
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="media.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21,15 16,10 5,21"/>
+                            </svg>
+                            Media
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="menu-management.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="3" y1="12" x2="21" y2="12"/>
+                                <line x1="3" y1="6" x2="21" y2="6"/>
+                                <line x1="3" y1="18" x2="21" y2="18"/>
+                            </svg>
+                            Menu Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="users.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="approvals.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,11 12,14 22,4"/>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                            </svg>
+                            Approvals
+                            <span class="nav-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html" class="nav-link active">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6m0 14v-6m11-5h-6m-14 0h6m15.66 5.66l-4.24-4.24M6.34 6.34l-4.24-4.24m0 16.48l4.24-4.24m11.31-11.31l4.24-4.24"/>
+                            </svg>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="accessibility-controls">
+                    <div class="control-row">
+                        <span class="control-label">High Contrast</span>
+                        <label class="switch">
+                            <input type="checkbox" id="highContrast">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Font Size</span>
+                        <div style="display: flex; gap: 0.25rem;">
+                            <button class="btn btn-secondary btn-sm" id="decreaseFont">-</button>
+                            <button class="btn btn-secondary btn-sm" id="increaseFont">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="openSidebar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <line x1="3" y1="12" x2="21" y2="12"/>
+                            <line x1="3" y1="18" x2="21" y2="18"/>
+                        </svg>
+                    </button>
+                    <h1 class="page-title">Settings</h1>
+                </div>
+                
+                <div class="header-right">
+                    <button class="btn btn-primary" onclick="saveAllSettings()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                            <polyline points="17,21 17,13 7,13 7,21"/>
+                            <polyline points="7,3 7,8 15,8"/>
+                        </svg>
+                        Save Settings
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="content">
+                <div class="settings-grid">
+                    <!-- General Settings -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">General Settings</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label for="site-title" class="form-label">Site Title</label>
+                                <input type="text" id="site-title" value="University Website" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="site-tagline" class="form-label">Site Tagline</label>
+                                <input type="text" id="site-tagline" value="Excellence in Education" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="admin-email" class="form-label">Admin Email</label>
+                                <input type="email" id="admin-email" value="admin@university.edu" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="timezone" class="form-label">Timezone</label>
+                                <select id="timezone" class="form-control">
+                                    <option value="UTC">UTC</option>
+                                    <option value="America/New_York" selected>Eastern Time</option>
+                                    <option value="America/Chicago">Central Time</option>
+                                    <option value="America/Denver">Mountain Time</option>
+                                    <option value="America/Los_Angeles">Pacific Time</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Language & Localization -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Language & Localization</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Default Language</h4>
+                                    <p>Primary language for the website</p>
+                                </div>
+                                <select class="form-control" style="width: auto;">
+                                    <option value="en" selected>English</option>
+                                    <option value="mr">मराठी (Marathi)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Enable Multilingual Support</h4>
+                                    <p>Allow users to switch between languages</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Show Language Switcher</h4>
+                                    <p>Display language toggle in header</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Theme & Appearance -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Theme & Appearance</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label class="form-label">Primary Color</label>
+                                <div class="color-palette">
+                                    <div class="color-option selected" style="background: hsl(220, 70%, 50%);" data-color="university"></div>
+                                    <div class="color-option" style="background: hsl(142, 76%, 36%);" data-color="green"></div>
+                                    <div class="color-option" style="background: hsl(0, 84%, 60%);" data-color="red"></div>
+                                    <div class="color-option" style="background: hsl(221, 83%, 53%);" data-color="blue"></div>
+                                    <div class="color-option" style="background: hsl(271, 81%, 56%);" data-color="purple"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Dark Mode</h4>
+                                    <p>Enable dark theme for admin panel</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Compact Layout</h4>
+                                    <p>Reduce spacing and padding</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accessibility Settings -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Accessibility</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>High Contrast Mode</h4>
+                                    <p>Increase color contrast for better visibility</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="globalHighContrast">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Large Font Size</h4>
+                                    <p>Increase default font size</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="globalLargeFonts">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Keyboard Navigation</h4>
+                                    <p>Enhanced keyboard shortcuts and focus indicators</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Settings -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Content Management</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Require Approval</h4>
+                                    <p>New content requires approval before publishing</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Auto-save Drafts</h4>
+                                    <p>Automatically save content as you type</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="items-per-page" class="form-label">Items per Page</label>
+                                <select id="items-per-page" class="form-control">
+                                    <option value="10">10</option>
+                                    <option value="25" selected>25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Settings -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Security</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Two-Factor Authentication</h4>
+                                    <p>Require 2FA for admin accounts</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="session-timeout" class="form-label">Session Timeout (minutes)</label>
+                                <select id="session-timeout" class="form-control">
+                                    <option value="30">30</option>
+                                    <option value="60" selected>60</option>
+                                    <option value="120">120</option>
+                                    <option value="240">240</option>
+                                </select>
+                            </div>
+                            
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Force HTTPS</h4>
+                                    <p>Redirect all traffic to secure connection</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backup & Maintenance -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Backup & Maintenance</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="setting-row">
+                                <div class="setting-info">
+                                    <h4>Automatic Backups</h4>
+                                    <p>Daily backups of content and settings</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="backup-retention" class="form-label">Backup Retention (days)</label>
+                                <select id="backup-retention" class="form-control">
+                                    <option value="7">7</option>
+                                    <option value="14">14</option>
+                                    <option value="30" selected>30</option>
+                                    <option value="90">90</option>
+                                </select>
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                <button class="btn btn-secondary" onclick="createBackup()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7,10 12,15 17,10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                    Create Backup Now
+                                </button>
+                                <button class="btn btn-secondary" onclick="viewBackups()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                    View Backups
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar functionality
+        document.getElementById('openSidebar').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+        });
+
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('overlay').classList.remove('active');
+        });
+
+        // Color palette selection
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('color-option')) {
+                // Remove selected class from all options
+                document.querySelectorAll('.color-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                // Add selected class to clicked option
+                e.target.classList.add('selected');
+            }
+        });
+
+        // Global accessibility settings
+        document.getElementById('globalHighContrast').addEventListener('change', function() {
+            document.body.classList.toggle('high-contrast');
+            // Sync with sidebar control
+            document.getElementById('highContrast').checked = this.checked;
+        });
+
+        document.getElementById('globalLargeFonts').addEventListener('change', function() {
+            document.body.classList.toggle('font-larger');
+        });
+
+        // Sidebar accessibility controls (sync with global)
+        document.getElementById('highContrast').addEventListener('change', function() {
+            document.body.classList.toggle('high-contrast');
+            document.getElementById('globalHighContrast').checked = this.checked;
+        });
+
+        document.getElementById('increaseFont').addEventListener('click', function() {
+            document.body.classList.add('font-larger');
+            document.getElementById('globalLargeFonts').checked = true;
+        });
+
+        document.getElementById('decreaseFont').addEventListener('click', function() {
+            document.body.classList.remove('font-larger');
+            document.getElementById('globalLargeFonts').checked = false;
+        });
+
+        // Settings functions
+        function saveAllSettings() {
+            // Collect all form data
+            const settings = {
+                siteTitle: document.getElementById('site-title').value,
+                siteTagline: document.getElementById('site-tagline').value,
+                adminEmail: document.getElementById('admin-email').value,
+                timezone: document.getElementById('timezone').value,
+                itemsPerPage: document.getElementById('items-per-page').value,
+                sessionTimeout: document.getElementById('session-timeout').value,
+                backupRetention: document.getElementById('backup-retention').value,
+                // Add other settings as needed
+            };
+            
+            alert('All settings have been saved successfully!');
+        }
+
+        function createBackup() {
+            if (confirm('Create a backup of all content and settings?')) {
+                alert('Backup created successfully!\nBackup ID: backup_' + new Date().getTime());
+            }
+        }
+
+        function viewBackups() {
+            alert('Backup management interface would open here, showing:\n- List of available backups\n- Restore options\n- Download options');
+        }
+
+        // Initialize settings on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved settings from localStorage or API
+            console.log('Settings page initialized');
+        });
+    </script>
+</body>
+</html>

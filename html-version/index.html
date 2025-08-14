@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University WCMS - Admin Panel</title>
+    <meta name="description" content="University Web Content Management System admin panel for managing website content, users, and settings">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .welcome-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--university-50) 0%, var(--slate-100) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .welcome-card {
+            max-width: 600px;
+            text-align: center;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .welcome-logo {
+            width: 4rem;
+            height: 4rem;
+            background: var(--university-500);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            margin: 0 auto 2rem;
+        }
+        
+        .welcome-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 1rem;
+        }
+        
+        .welcome-description {
+            color: var(--slate-600);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            padding: 1rem;
+            background: var(--slate-50);
+            border-radius: var(--radius);
+        }
+        
+        .feature-icon {
+            width: 2rem;
+            height: 2rem;
+            margin: 0 auto 0.5rem;
+            color: var(--university-500);
+        }
+        
+        .feature-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--slate-700);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="welcome-card">
+            <div class="welcome-logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82Z"/>
+                </svg>
+            </div>
+            
+            <h1 class="welcome-title">University WCMS</h1>
+            <p class="welcome-description">
+                Comprehensive Web Content Management System designed specifically for educational institutions. 
+                Manage your website content, users, media, and settings with ease.
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                    </svg>
+                    <div class="feature-label">Content Management</div>
+                </div>
+                
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21,15 16,10 5,21"/>
+                    </svg>
+                    <div class="feature-label">Media Library</div>
+                </div>
+                
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    </svg>
+                    <div class="feature-label">User Management</div>
+                </div>
+                
+                <div class="feature-item">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9,11 12,14 22,4"/>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                    <div class="feature-label">Approval Workflow</div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="login.html" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                        <polyline points="10,17 15,12 10,7"/>
+                        <line x1="15" y1="12" x2="3" y2="12"/>
+                    </svg>
+                    Login to Admin Panel
+                </a>
+                <a href="dashboard.html" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    </svg>
+                    View Dashboard
+                </a>
+            </div>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--slate-200);">
+                <p style="font-size: 0.875rem; color: var(--slate-500);">
+                    <strong>Features:</strong> Role-based access control, multilingual support (English/Marathi), 
+                    accessibility options, responsive design, and comprehensive content approval workflow.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -2,7 +2,11 @@
 
 ## Overview
 
-This is a full-stack University Website Content Management System (WCMS) built with React, Express, and PostgreSQL. The application provides a comprehensive admin dashboard for managing university website content, including pages, media, users, and navigation menus. It features role-based access control, content approval workflows, and multilingual support designed specifically for educational institutions.
+This is a comprehensive University Website Content Management System (WCMS) available in two versions:
+1. **Full-stack React Application** - Modern web app built with React, Express, and PostgreSQL
+2. **Standalone HTML/CSS Version** - Complete admin panel using only HTML, CSS, and vanilla JavaScript
+
+Both versions provide comprehensive admin dashboards for managing university website content, including pages, media, users, and navigation menus. Features include role-based access control, content approval workflows, multilingual support (English/Marathi), and accessibility options designed specifically for educational institutions.
 
 ## User Preferences
 
@@ -70,3 +74,35 @@ The system uses a comprehensive schema with four main entities:
 - **Form Validation**: Zod schema validation with React Hook Form resolvers
 - **Date Handling**: date-fns for consistent date formatting and manipulation
 - **Image Services**: Unsplash integration for placeholder images in media management
+
+## HTML/CSS Version Features
+
+### Standalone Implementation
+- **Complete Admin Panel**: All functionality implemented in pure HTML, CSS, and vanilla JavaScript
+- **Mobile-First Design**: Fully responsive layout with collapsible sidebar navigation
+- **Modern UI**: Clean, professional interface with smooth animations and hover effects
+- **Cross-Browser Compatibility**: Works on all modern web browsers without dependencies
+
+### Page Structure
+- **Login Page** (`login.html`): Secure authentication with password reset functionality
+- **Dashboard** (`dashboard.html`): Statistics overview, quick actions, and recent activity feed
+- **Content Management** (`content.html`): Page creation, editing, and content workflow management
+- **Media Gallery** (`media.html`): File upload, organization, and media management with categories
+- **Menu Management** (`menu-management.html`): Drag-and-drop hierarchical menu builder
+- **User Management** (`users.html`): User accounts, roles, and permission management
+- **Approvals** (`approvals.html`): Content review and approval workflow interface
+- **Settings** (`settings.html`): System configuration, branding, and accessibility options
+
+### Accessibility & Localization
+- **High Contrast Mode**: Enhanced visibility with increased color contrast
+- **Font Size Controls**: Adjustable text size for better readability
+- **Keyboard Navigation**: Full keyboard accessibility support
+- **Multilingual Support**: English/Marathi language toggle functionality
+- **Screen Reader Compatible**: Semantic HTML with proper ARIA labels
+
+### Technical Implementation
+- **Pure CSS Styling**: No external frameworks, custom CSS variables for theming
+- **Vanilla JavaScript**: Interactive functionality without library dependencies
+- **Local Storage Integration**: Settings persistence across sessions
+- **Form Validation**: Client-side validation with user-friendly error messages
+- **Print Optimization**: Print-friendly styles for reports and content

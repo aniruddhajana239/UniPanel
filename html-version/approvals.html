@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Approvals - University WCMS</title>
+    <meta name="description" content="Review and approve pending content changes for the university website">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82Z"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">University WCMS</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="content.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                            Content
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="media.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21,15 16,10 5,21"/>
+                            </svg>
+                            Media
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="menu-management.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="3" y1="12" x2="21" y2="12"/>
+                                <line x1="3" y1="6" x2="21" y2="6"/>
+                                <line x1="3" y1="18" x2="21" y2="18"/>
+                            </svg>
+                            Menu Management
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="users.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="approvals.html" class="nav-link active">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,11 12,14 22,4"/>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                            </svg>
+                            Approvals
+                            <span class="nav-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6m0 14v-6m11-5h-6m-14 0h6m15.66 5.66l-4.24-4.24M6.34 6.34l-4.24-4.24m0 16.48l4.24-4.24m11.31-11.31l4.24-4.24"/>
+                            </svg>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="accessibility-controls">
+                    <div class="control-row">
+                        <span class="control-label">High Contrast</span>
+                        <label class="switch">
+                            <input type="checkbox" id="highContrast">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Font Size</span>
+                        <div style="display: flex; gap: 0.25rem;">
+                            <button class="btn btn-secondary btn-sm" id="decreaseFont">-</button>
+                            <button class="btn btn-secondary btn-sm" id="increaseFont">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="openSidebar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <line x1="3" y1="12" x2="21" y2="12"/>
+                            <line x1="3" y1="18" x2="21" y2="18"/>
+                        </svg>
+                    </button>
+                    <h1 class="page-title">Content Approvals</h1>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="content">
+                <!-- Pending Approvals -->
+                <div class="grid" style="gap: 1.5rem;">
+                    <!-- Approval Item 1 -->
+                    <div class="card">
+                        <div class="card-header" style="border-bottom: none; padding-bottom: 0;">
+                            <div style="display: flex; justify-content: between; align-items: flex-start;">
+                                <div style="flex: 1;">
+                                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--slate-900); margin-bottom: 0.25rem;">
+                                        Computer Science Department Update
+                                    </h3>
+                                    <div style="display: flex; align-items: center; gap: 1rem; font-size: 0.875rem; color: var(--slate-500);">
+                                        <span>by Dr. John Smith</span>
+                                        <span>•</span>
+                                        <span>2 days ago</span>
+                                        <span>•</span>
+                                        <span>/departments/computer-science</span>
+                                    </div>
+                                </div>
+                                <span class="badge badge-pending">Pending Review</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div style="background: var(--slate-50); padding: 1rem; border-radius: var(--radius); margin-bottom: 1rem; border-left: 4px solid var(--orange-600);">
+                                <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.5rem;">Changes Summary:</h4>
+                                <ul style="list-style: disc; margin-left: 1.25rem; color: var(--slate-600); font-size: 0.875rem;">
+                                    <li>Updated faculty listing with 3 new professors</li>
+                                    <li>Added new course offerings for Fall 2024</li>
+                                    <li>Modified research focus areas section</li>
+                                </ul>
+                            </div>
+                            <div style="display: flex; justify-content: between; align-items: center; gap: 1rem;">
+                                <button class="btn btn-secondary" onclick="previewContent('cs-dept')">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                    Preview Changes
+                                </button>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-danger" onclick="rejectContent('cs-dept', 'Computer Science Department Update')">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="6" x2="6" y2="18"/>
+                                            <line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                        Reject
+                                    </button>
+                                    <button class="btn btn-success" onclick="approveContent('cs-dept', 'Computer Science Department Update')">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12"/>
+                                        </svg>
+                                        Approve
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Approval Item 2 -->
+                    <div class="card">
+                        <div class="card-header" style="border-bottom: none; padding-bottom: 0;">
+                            <div style="display: flex; justify-content: between; align-items: flex-start;">
+                                <div style="flex: 1;">
+                                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--slate-900); margin-bottom: 0.25rem;">
+                                        University News - Research Grant Announcement
+                                    </h3>
+                                    <div style="display: flex; align-items: center; gap: 1rem; font-size: 0.875rem; color: var(--slate-500);">
+                                        <span>by Jane Doe</span>
+                                        <span>•</span>
+                                        <span>1 day ago</span>
+                                        <span>•</span>
+                                        <span>/news/research-grant-2024</span>
+                                    </div>
+                                </div>
+                                <span class="badge badge-pending">Pending Review</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div style="background: var(--slate-50); padding: 1rem; border-radius: var(--radius); margin-bottom: 1rem; border-left: 4px solid var(--orange-600);">
+                                <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.5rem;">Changes Summary:</h4>
+                                <ul style="list-style: disc; margin-left: 1.25rem; color: var(--slate-600); font-size: 0.875rem;">
+                                    <li>New article about $2M research grant from NSF</li>
+                                    <li>Added faculty quotes and research objectives</li>
+                                    <li>Included high-resolution images from lab</li>
+                                </ul>
+                            </div>
+                            <div style="display: flex; justify-content: between; align-items: center; gap: 1rem;">
+                                <button class="btn btn-secondary" onclick="previewContent('research-grant')">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                    Preview Changes
+                                </button>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-danger" onclick="rejectContent('research-grant', 'Research Grant Announcement')">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="6" x2="6" y2="18"/>
+                                            <line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                        Reject
+                                    </button>
+                                    <button class="btn btn-success" onclick="approveContent('research-grant', 'Research Grant Announcement')">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12"/>
+                                        </svg>
+                                        Approve
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Approval Item 3 -->
+                    <div class="card">
+                        <div class="card-header" style="border-bottom: none; padding-bottom: 0;">
+                            <div style="display: flex; justify-content: between; align-items: flex-start;">
+                                <div style="flex: 1;">
+                                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--slate-900); margin-bottom: 0.25rem;">
+                                        Campus Events - Fall Festival 2024
+                                    </h3>
+                                    <div style="display: flex; align-items: center; gap: 1rem; font-size: 0.875rem; color: var(--slate-500);">
+                                        <span>by Events Team</span>
+                                        <span>•</span>
+                                        <span>3 hours ago</span>
+                                        <span>•</span>
+                                        <span>/events/fall-festival-2024</span>
+                                    </div>
+                                </div>
+                                <span class="badge badge-pending">Pending Review</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div style="background: var(--slate-50); padding: 1rem; border-radius: var(--radius); margin-bottom: 1rem; border-left: 4px solid var(--orange-600);">
+                                <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.5rem;">Changes Summary:</h4>
+                                <ul style="list-style: disc; margin-left: 1.25rem; color: var(--slate-600); font-size: 0.875rem;">
+                                    <li>Event schedule and timing details</li>
+                                    <li>Registration information and ticket prices</li>
+                                    <li>Performance lineup and activity descriptions</li>
+                                </ul>
+                            </div>
+                            <div style="display: flex; justify-content: between; align-items: center; gap: 1rem;">
+                                <button class="btn btn-secondary" onclick="previewContent('fall-festival')">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                    Preview Changes
+                                </button>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-danger" onclick="rejectContent('fall-festival', 'Fall Festival 2024')">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="6" x2="6" y2="18"/>
+                                            <line x1="6" y1="6" x2="18" y2="18"/>
+                                        </svg>
+                                        Reject
+                                    </button>
+                                    <button class="btn btn-success" onclick="approveContent('fall-festival', 'Fall Festival 2024')">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12"/>
+                                        </svg>
+                                        Approve
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulk Actions -->
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-content">
+                        <div style="display: flex; justify-content: between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                            <div>
+                                <h3 style="font-size: 1rem; font-weight: 600; color: var(--slate-900); margin-bottom: 0.25rem;">
+                                    Bulk Actions
+                                </h3>
+                                <p style="font-size: 0.875rem; color: var(--slate-600);">
+                                    Manage multiple approvals at once
+                                </p>
+                            </div>
+                            <div style="display: flex; gap: 1rem;">
+                                <button class="btn btn-danger" onclick="bulkReject()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"/>
+                                        <line x1="6" y1="6" x2="18" y2="18"/>
+                                    </svg>
+                                    Reject All Pending
+                                </button>
+                                <button class="btn btn-success" onclick="bulkApprove()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="20,6 9,17 4,12"/>
+                                    </svg>
+                                    Approve All Pending
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar functionality
+        document.getElementById('openSidebar').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+        });
+
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('overlay').classList.remove('active');
+        });
+
+        // Approval functions
+        function previewContent(id) {
+            alert(`Preview functionality for content: ${id}\nThis would open a modal or new window showing the content changes.`);
+        }
+
+        function approveContent(id, title) {
+            if (confirm(`Approve "${title}" for publication?`)) {
+                // Find the card containing this content
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    const cardTitle = card.querySelector('h3');
+                    if (cardTitle && cardTitle.textContent.trim() === title) {
+                        // Remove the card with animation
+                        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(-10px)';
+                        setTimeout(() => {
+                            card.remove();
+                            updateBadgeCount();
+                        }, 300);
+                    }
+                });
+                alert(`"${title}" has been approved and published.`);
+            }
+        }
+
+        function rejectContent(id, title) {
+            const reason = prompt(`Provide a reason for rejecting "${title}":`);
+            if (reason) {
+                // Find the card containing this content
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    const cardTitle = card.querySelector('h3');
+                    if (cardTitle && cardTitle.textContent.trim() === title) {
+                        // Remove the card with animation
+                        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(-10px)';
+                        setTimeout(() => {
+                            card.remove();
+                            updateBadgeCount();
+                        }, 300);
+                    }
+                });
+                alert(`"${title}" has been rejected.\nReason: ${reason}`);
+            }
+        }
+
+        function bulkApprove() {
+            if (confirm('Approve all pending content for publication?')) {
+                const cards = document.querySelectorAll('.card');
+                let pendingCount = 0;
+                cards.forEach(card => {
+                    if (card.querySelector('.badge-pending')) {
+                        pendingCount++;
+                        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(-10px)';
+                        setTimeout(() => {
+                            card.remove();
+                        }, 300);
+                    }
+                });
+                
+                if (pendingCount > 0) {
+                    setTimeout(() => {
+                        updateBadgeCount();
+                        alert(`${pendingCount} content items have been approved and published.`);
+                    }, 300);
+                }
+            }
+        }
+
+        function bulkReject() {
+            const reason = prompt('Provide a reason for rejecting all pending content:');
+            if (reason) {
+                const cards = document.querySelectorAll('.card');
+                let pendingCount = 0;
+                cards.forEach(card => {
+                    if (card.querySelector('.badge-pending')) {
+                        pendingCount++;
+                        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(-10px)';
+                        setTimeout(() => {
+                            card.remove();
+                        }, 300);
+                    }
+                });
+                
+                if (pendingCount > 0) {
+                    setTimeout(() => {
+                        updateBadgeCount();
+                        alert(`${pendingCount} content items have been rejected.\nReason: ${reason}`);
+                    }, 300);
+                }
+            }
+        }
+
+        function updateBadgeCount() {
+            const badges = document.querySelectorAll('.nav-badge');
+            const pendingCards = document.querySelectorAll('.badge-pending');
+            const count = pendingCards.length;
+            
+            badges.forEach(badge => {
+                if (count === 0) {
+                    badge.style.display = 'none';
+                } else {
+                    badge.textContent = count;
+                    badge.style.display = 'inline-flex';
+                }
+            });
+        }
+
+        // Accessibility controls
+        document.getElementById('highContrast').addEventListener('change', function() {
+            document.body.classList.toggle('high-contrast');
+        });
+
+        document.getElementById('increaseFont').addEventListener('click', function() {
+            document.body.classList.add('font-larger');
+        });
+
+        document.getElementById('decreaseFont').addEventListener('click', function() {
+            document.body.classList.remove('font-larger');
+        });
+    </script>
+</body>
+</html>
